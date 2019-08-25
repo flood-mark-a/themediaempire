@@ -1,0 +1,13 @@
+body {
+    background-color: #feff000f;
+}
+
+body .content {
+	padding-top: 1em;
+	padding-left: .5em;
+	padding-right: .5em;
+}
+
+.bg-light {
+	background-color: #63b1ff17;
+}

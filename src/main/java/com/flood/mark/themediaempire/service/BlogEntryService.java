@@ -15,12 +15,16 @@ limitations under the License.
  */
 package com.flood.mark.themediaempire.service;
 
+import javax.validation.Valid;
+import javax.validation.groups.Default;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.flood.mark.themediaempire.repository.BlogEntryRepository;
 import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
@@ -33,6 +37,7 @@ import com.flood.mark.themediaempire.service.model.conversion.BlogEntryConverter
  * @since 2019
  */
 @Service
+@Validated(value = Default.class)
 public class BlogEntryService {
 
 	private final BlogEntryRepository blogEntryRepository;
@@ -53,7 +58,7 @@ public class BlogEntryService {
 	 * @param blogEntry
 	 */
 	@Transactional
-	public void save(BlogEntry blogEntry) {
+	public BlogEntry save(@Valid BlogEntry blogEntry) {
 		BlogEntryEntity entity = null;
 		if (blogEntry.isNew()) {
 			entity = new BlogEntryEntity();
@@ -62,7 +67,19 @@ public class BlogEntryService {
 					new NotFoundExceptionSupplier("Could not find blog entry with id: [{1}]", blogEntry.getId()));
 		}
 		blogEntryConverter.update(blogEntry, entity);
-		blogEntryRepository.save(entity);
+		return blogEntryConverter.convert(blogEntryRepository.save(entity));
+	}
+
+	/**
+	 * Read a single blog entry
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public BlogEntry read(int id) {
+		return blogEntryConverter.convert(blogEntryRepository.findById(id)
+				.orElseThrow(new NotFoundExceptionSupplier("Could not find blog entry with id: [{1}]", id)));
 	}
 
 }

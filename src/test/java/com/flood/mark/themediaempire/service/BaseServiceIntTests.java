@@ -13,36 +13,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.service.model;
+package com.flood.mark.themediaempire.service;
 
-import javax.validation.constraints.NotBlank;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public class BlogEntry extends AbstractModel {
-
-	@NotBlank
-	private String subject;
-
-	@NotBlank
-	private String content;
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional
+public class BaseServiceIntTests {
 
 }

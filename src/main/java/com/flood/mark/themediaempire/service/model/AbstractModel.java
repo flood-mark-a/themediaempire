@@ -54,7 +54,7 @@ public abstract class AbstractModel {
 	}
 
 	public boolean isNew() {
-		return id < 0;
+		return id <= 0;
 	}
 
 }

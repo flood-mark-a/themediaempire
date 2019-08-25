@@ -15,13 +15,27 @@ limitations under the License.
  */
 package com.flood.mark.themediaempire.repository.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-@Entity
+@Entity(name = "interest")
 public class InterestEntity extends AbstractEntity {
+
+	@NotBlank
+	@Column(length = 128)
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

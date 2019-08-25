@@ -25,7 +25,7 @@ import javax.persistence.Lob;
  * @author Mark Flood
  * @since 2019
  */
-@Entity
+@Entity(name = "blog_entry")
 public class BlogEntryEntity extends AbstractEntity {
 
 	private LocalDateTime published;

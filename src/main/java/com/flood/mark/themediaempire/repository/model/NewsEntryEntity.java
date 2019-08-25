@@ -21,7 +21,7 @@ import javax.persistence.Entity;
  * @author Mark Flood
  * @since 2019
  */
-@Entity
+@Entity(name = "news_entry")
 public class NewsEntryEntity extends AbstractEntity {
 
 }

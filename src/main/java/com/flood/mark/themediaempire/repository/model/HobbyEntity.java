@@ -21,7 +21,7 @@ import javax.persistence.Entity;
  * @author Mark Flood
  * @since 2019
  */
-@Entity
+@Entity(name = "hobby")
 public class HobbyEntity extends AbstractEntity {
 
 }

@@ -13,16 +13,30 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.repository;
+package com.flood.mark.themediaempire.service.model.conversion;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+import com.flood.mark.themediaempire.repository.model.AbstractEntity;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public interface BlogEntryRepository extends JpaRepository<BlogEntryEntity, Integer> {
+public interface EntityConverter<T extends AbstractEntity, V> {
+
+	/**
+	 * Convert an entity to model used in service
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	V convert(T entity);
+
+	/**
+	 * Update entity based on fields available in service
+	 * 
+	 * @param model
+	 * @param entity
+	 */
+	void update(V model, T entity);
 
 }

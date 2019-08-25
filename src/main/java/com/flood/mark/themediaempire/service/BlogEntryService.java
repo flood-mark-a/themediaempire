@@ -20,9 +20,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.flood.mark.themediaempire.model.BlogEntry;
 import com.flood.mark.themediaempire.repository.BlogEntryRepository;
+import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+import com.flood.mark.themediaempire.service.exception.NotFoundExceptionSupplier;
+import com.flood.mark.themediaempire.service.model.BlogEntry;
+import com.flood.mark.themediaempire.service.model.conversion.BlogEntryConverter;
 
 /**
  * @author Mark Flood
@@ -32,14 +36,33 @@ import com.flood.mark.themediaempire.repository.BlogEntryRepository;
 public class BlogEntryService {
 
 	private final BlogEntryRepository blogEntryRepository;
+	private final BlogEntryConverter blogEntryConverter;
 
-	public BlogEntryService(BlogEntryRepository blogEntryRepository) {
+	public BlogEntryService(BlogEntryRepository blogEntryRepository, BlogEntryConverter blogEntryConverter) {
 		this.blogEntryRepository = blogEntryRepository;
+		this.blogEntryConverter = blogEntryConverter;
 	}
 
+	@Transactional(readOnly = true)
 	public PageResult<BlogEntry> listEntries(int pageNumber, int pageSize) {
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Order.desc(BlogEntry.CREATED_ON_FIELD)));
-		return PageResult.of(blogEntryRepository.findAll(pageable));
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Order.desc(BlogEntryEntity.CREATED_ON_FIELD)));
+		return PageResult.of(blogEntryRepository.findAll(pageable).map(entry -> blogEntryConverter.convert(entry)));
+	}
+
+	/**
+	 * @param blogEntry
+	 */
+	@Transactional
+	public void save(BlogEntry blogEntry) {
+		BlogEntryEntity entity = null;
+		if (blogEntry.isNew()) {
+			entity = new BlogEntryEntity();
+		} else {
+			entity = blogEntryRepository.findById(blogEntry.getId()).orElseThrow(
+					new NotFoundExceptionSupplier("Could not find blog entry with id: [{1}]", blogEntry.getId()));
+		}
+		blogEntryConverter.update(blogEntry, entity);
+		blogEntryRepository.save(entity);
 	}
 
 }

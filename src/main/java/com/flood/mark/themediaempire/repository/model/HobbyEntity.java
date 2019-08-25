@@ -13,16 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.repository;
+package com.flood.mark.themediaempire.repository.model;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+import javax.persistence.Entity;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public interface BlogEntryRepository extends JpaRepository<BlogEntryEntity, Integer> {
+@Entity
+public class HobbyEntity extends AbstractEntity {
 
 }

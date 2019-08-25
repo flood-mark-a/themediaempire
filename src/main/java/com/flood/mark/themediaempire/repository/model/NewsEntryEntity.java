@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.model;
+package com.flood.mark.themediaempire.repository.model;
 
 import javax.persistence.Entity;
 
@@ -22,6 +22,6 @@ import javax.persistence.Entity;
  * @since 2019
  */
 @Entity
-public class Hobby extends AbstractEntity {
+public class NewsEntryEntity extends AbstractEntity {
 
 }

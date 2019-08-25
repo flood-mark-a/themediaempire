@@ -13,16 +13,31 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+package com.flood.mark.themediaempire.service.model;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public interface BlogEntryRepository extends JpaRepository<BlogEntryEntity, Integer> {
+public class BlogEntry extends AbstractModel {
+
+	private String subject;
+	private String content;
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 }

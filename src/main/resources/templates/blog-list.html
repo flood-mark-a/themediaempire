@@ -26,10 +26,11 @@
 		<!-- Hobby Journeys -->
 		<h1>Blogs!</h1>
 		
-		<div class="blog-entry" th:each="${blog: blogs}">
-			<div class="blog-subject" th:value="${blog.subject}">Subject</div>
-			<div class="blog-published" th:value="${blog.published}">Published</div>
-			<div class="blog-content" th:value="${blog.content}">Content</div>
+		<a th:href="@{/blog/create}">Create</a>
+		
+		<div class="blog-entry" th:each="blog : ${blogs}">
+			<h2 class="blog-subject" th:text="${blog.subject}">Subject</h2>
+			<div class="blog-content" th:text="${blog.content}">Content</div>
 		</div>
 
 	</div>

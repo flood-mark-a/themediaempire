@@ -13,48 +13,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.model;
+package com.flood.mark.themediaempire.service.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-
 /**
+ * Base class for models which are used in the services
+ * 
  * @author Mark Flood
  * @since 2019
  */
-@MappedSuperclass
-public class AbstractEntity {
+public abstract class AbstractModel {
 
-	public static final String CREATED_ON_FIELD = "createdOn";
-	public static final String MODIFIED_ON_FIELD = "modifiedOn";
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id = -1;
-
-	@Column(nullable = false, updatable = false)
 	private LocalDateTime createdOn;
-
-	@Column(nullable = false)
 	private LocalDateTime modifiedOn;
-
-	@PrePersist
-	public void initializeAuditFields() {
-		createdOn = LocalDateTime.now();
-		modifiedOn = LocalDateTime.now();
-	}
-
-	@PreUpdate
-	public void updateAuditFields() {
-		modifiedOn = LocalDateTime.now();
-	}
 
 	public int getId() {
 		return id;

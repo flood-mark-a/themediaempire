@@ -13,16 +13,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.repository;
+package com.flood.mark.themediaempire.service.exception;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+import java.text.MessageFormat;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public interface BlogEntryRepository extends JpaRepository<BlogEntryEntity, Integer> {
+public class NotFoundException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @param exceptionMessage
+	 * @param args
+	 */
+	public NotFoundException(String exceptionMessage, Object[] args) {
+		super(MessageFormat.format(exceptionMessage, args));
+	}
 
 }

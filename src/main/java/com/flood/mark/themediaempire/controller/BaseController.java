@@ -21,6 +21,9 @@ package com.flood.mark.themediaempire.controller;
  */
 public abstract class BaseController {
 
+	protected static final int DEFAULT_PAGE = 0;
+	protected static final int DEFAULT_PAGE_SIZE = 20;
+
 	/**
 	 * Method to redirect a user to another URL. Used primarily to prevent extra
 	 * submissions on navigation.
@@ -29,7 +32,7 @@ public abstract class BaseController {
 	 * @return a {@link String} which will redirect the user to the specified URL
 	 */
 	protected String redirect(String url) {
-		return "redirect: " + url;
+		return "redirect:" + url;
 	}
 
 }

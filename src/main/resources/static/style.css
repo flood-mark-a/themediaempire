@@ -6,8 +6,46 @@ body .content {
 	padding-top: 1em;
 	padding-left: .5em;
 	padding-right: .5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
 }
 
 .bg-light {
 	background-color: #63b1ff17;
 }
+
+#blog-create {
+	display: flex;
+	flex-flow: column;
+}
+
+#blog-create input, #blog-create textarea {
+	border-radius: .25em;
+	margin: .6em;
+	margin-top: 0px;
+	padding: .25em;
+	padding-left: .5em;
+}
+
+#blog-create #subject {
+	width: 550px;
+}
+
+#blog-create button {
+	margin: .6em;
+	width: 150px
+}
+
+.blog-entry {
+	margin-top: 2em;
+}
+
+h2.blog-subject {
+	
+}
+
+.blog-content {
+	font-style: italic; 
+}
+

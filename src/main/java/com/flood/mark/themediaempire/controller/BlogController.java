@@ -16,10 +16,15 @@ limitations under the License.
 package com.flood.mark.themediaempire.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.flood.mark.themediaempire.service.BlogEntryService;
+import com.flood.mark.themediaempire.service.model.BlogEntry;
 
 /**
  * @author Mark Flood
@@ -29,8 +34,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/blog")
 public class BlogController extends BaseController {
 
+	private static final String BLOG_LIST_ATTRIBUTE = "blogs";
+
+	private final BlogEntryService blogEntryService;
+
+	public BlogController(BlogEntryService blogEntryService) {
+		this.blogEntryService = blogEntryService;
+	}
+
 	@GetMapping
-	public String list() {
+	public String list(Model model) {
+		model.addAttribute(BLOG_LIST_ATTRIBUTE,
+				blogEntryService.listEntries(DEFAULT_PAGE, DEFAULT_PAGE_SIZE).getContent());
 		return "blog-list";
 	}
 
@@ -40,8 +55,9 @@ public class BlogController extends BaseController {
 	}
 
 	@PostMapping("/create")
-	public String createSubmission() {
-		return redirect("/list");
+	public String createSubmission(@ModelAttribute BlogEntry blogEntry) {
+		blogEntryService.save(blogEntry);
+		return redirect("/blog");
 	}
 
 	@GetMapping("/{id}/read")

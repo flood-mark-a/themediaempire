@@ -22,10 +22,10 @@ import javax.validation.groups.Default;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.flood.mark.themediaempire.repository.BlogEntryRepository;
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
-import com.flood.mark.themediaempire.service.model.BlogEntry;
-import com.flood.mark.themediaempire.service.model.conversion.BlogEntryConverter;
+import com.flood.mark.themediaempire.repository.MediaEmpireRepository;
+import com.flood.mark.themediaempire.repository.model.InterestEntity;
+import com.flood.mark.themediaempire.service.model.Interest;
+import com.flood.mark.themediaempire.service.model.conversion.EntityConverter;
 
 /**
  * @author Mark Flood
@@ -33,17 +33,26 @@ import com.flood.mark.themediaempire.service.model.conversion.BlogEntryConverter
  */
 @Service
 @Validated(value = Default.class)
-public class BlogEntryService extends AbstractCrudService<BlogEntry, BlogEntryEntity> {
+public class InterestsService extends AbstractCrudService<Interest, InterestEntity>
+		implements MediaEmpireCrudService<Interest> {
 
-	private static final String ENTITY_NAME = "Blog Entry";
+	private static final String ENTITY_NAME = "Interest";
 
-	public BlogEntryService(BlogEntryRepository blogEntryRepository, BlogEntryConverter blogEntryConverter) {
-		super(blogEntryRepository, blogEntryConverter, ENTITY_NAME, new Supplier<BlogEntryEntity>() {
+	/**
+	 * @param repository
+	 * @param converter
+	 * @param entityName
+	 * @param entitySupplier
+	 */
+	public InterestsService(MediaEmpireRepository<InterestEntity> repository,
+			EntityConverter<InterestEntity, Interest> converter) {
+		super(repository, converter, ENTITY_NAME, new Supplier<InterestEntity>() {
 
 			@Override
-			public BlogEntryEntity get() {
-				return new BlogEntryEntity();
+			public InterestEntity get() {
+				return new InterestEntity();
 			}
+
 		});
 	}
 

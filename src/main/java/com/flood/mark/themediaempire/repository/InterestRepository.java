@@ -15,12 +15,12 @@ limitations under the License.
  */
 package com.flood.mark.themediaempire.repository;
 
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+import com.flood.mark.themediaempire.repository.model.InterestEntity;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public interface BlogEntryRepository extends MediaEmpireRepository<BlogEntryEntity> {
+public interface InterestRepository extends MediaEmpireRepository<InterestEntity> {
 
 }

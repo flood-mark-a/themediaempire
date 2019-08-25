@@ -13,27 +13,30 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-package com.flood.mark.themediaempire.controller;
+package com.flood.mark.themediaempire.service.model.conversion;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Component;
 
-import com.flood.mark.themediaempire.service.BlogEntryService;
-import com.flood.mark.themediaempire.service.model.BlogEntry;
+import com.flood.mark.themediaempire.repository.model.InterestEntity;
+import com.flood.mark.themediaempire.service.model.Interest;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-@Controller
-@RequestMapping("/blog")
-public class BlogController extends MediaEmpireCrudController<BlogEntry> {
+@Component
+public class InterestConverter implements EntityConverter<InterestEntity, Interest> {
 
-	private static final String MODEL_NAME = "blog";
-	private static final String LIST_ATTRIBUTE = "blogs";
+	@Override
+	public Interest convert(InterestEntity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	public BlogController(BlogEntryService blogEntryService) {
-		super(MODEL_NAME, LIST_ATTRIBUTE, blogEntryService);
+	@Override
+	public void update(Interest model, InterestEntity entity) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

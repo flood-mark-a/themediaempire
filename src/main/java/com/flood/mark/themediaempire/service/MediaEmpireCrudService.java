@@ -15,18 +15,39 @@ limitations under the License.
  */
 package com.flood.mark.themediaempire.service;
 
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
+import javax.validation.Valid;
+import javax.validation.groups.Default;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.flood.mark.themediaempire.service.model.AbstractModel;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
-public abstract class BaseServiceIntTests {
+@Validated(value = Default.class)
+public interface MediaEmpireCrudService<T extends AbstractModel> {
+
+	/**
+	 * 
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	PageResult<T> listEntries(int pageNumber, int pageSize);
+
+	/**
+	 * @param model
+	 */
+	T save(@Valid T model);
+
+	/**
+	 * Read a single entity
+	 * 
+	 * @param id
+	 * @return
+	 */
+	T read(int id);
 
 }

@@ -18,22 +18,22 @@ package com.flood.mark.themediaempire.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.flood.mark.themediaempire.service.BlogEntryService;
-import com.flood.mark.themediaempire.service.model.BlogEntry;
+import com.flood.mark.themediaempire.service.InterestsService;
+import com.flood.mark.themediaempire.service.model.Interest;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
 @Controller
-@RequestMapping("/blog")
-public class BlogController extends MediaEmpireCrudController<BlogEntry> {
+@RequestMapping("/interests")
+public class InterestsController extends MediaEmpireCrudController<Interest> {
 
-	private static final String MODEL_NAME = "blog";
-	private static final String LIST_ATTRIBUTE = "blogs";
+	private static final String MODEL_NAME = "interests";
+	private static final String LIST_ATTRIBUTE = "interests";
 
-	public BlogController(BlogEntryService blogEntryService) {
-		super(MODEL_NAME, LIST_ATTRIBUTE, blogEntryService);
+	public InterestsController(InterestsService service) {
+		super(MODEL_NAME, LIST_ATTRIBUTE, service);
 	}
 
 }

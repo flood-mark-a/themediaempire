@@ -15,12 +15,14 @@ limitations under the License.
  */
 package com.flood.mark.themediaempire.repository;
 
-import com.flood.mark.themediaempire.repository.model.BlogEntryEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * @author Mark Flood
  * @since 2019
  */
-public interface BlogEntryRepository extends MediaEmpireRepository<BlogEntryEntity> {
+@NoRepositoryBean
+public interface MediaEmpireRepository<T> extends JpaRepository<T, Integer> {
 
 }
